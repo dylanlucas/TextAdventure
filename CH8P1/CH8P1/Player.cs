@@ -8,6 +8,8 @@ namespace CH8P1
 {
     class Player
     {
+        List<Item> Bag = new List<Item>();
+
         public double playerHealth { get; set; }
         public double playerArmor { get; set; }
         public double playerAttack { get; set; }
@@ -57,6 +59,15 @@ namespace CH8P1
             {
                 return playerAttack;
             }
+        }
+
+        override
+        public String ToString()
+        {
+            String output;
+
+            output = playerBag;
+            return output;
         }
     }
 }

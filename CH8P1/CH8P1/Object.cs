@@ -12,5 +12,14 @@ namespace CH8P1
         public string itemName { get; set; }
         public string itemDescription { get; set; }
         public int itemLocation { get; set; }
+
+        override
+        public String ToString()
+        {
+            String output;
+
+            output = itemName + "\n" + itemDescription;
+            return output;
+        }
     }
 }

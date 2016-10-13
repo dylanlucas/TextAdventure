@@ -29,29 +29,33 @@ namespace CH8P1
         Room r6 = new Room();
         Room r7 = new Room();
 
+        //Initialize Objects;
+        Object obj1 = new Object();
+
         public Form1()
         {
             InitializeComponent();
 
             //Setup the rooms & objects per room
+            
             //Room r1 = new Room();
             r1.roomID = 0;
             r1.roomName = "Bed Room\n";
             r1.roomDescription = "You've just awoken in an unfamiliar area. The only light source you have is the candle to your left that is shines just enough for you to nice you're not at your home.\n" +
                                  "\nYou see that the only exit around is the one to the south of the room.\n" +
-                                 "\nYou should probably take the candle incase the rest of wherever you are is to dark to see....";
+                                 "\nYou should probably take the candle incase the rest of wherever you are is to dark to see....\n";
             r1.northExit = false;
             r1.eastExit = false;
             r1.southExit = true;
             r1.westExit = false;
             //rooms.Add(r1);
 
-            Object obj1 = new Object();
+            //Object obj1 = new Object();
             obj1.itemID = 1;
             obj1.itemName = "Candle";
-            obj1.itemDescription = "A small candle with a dim light emitting from it.";
+            obj1.itemDescription = "\nA small candle with a dim light emitting from it.\n";
             obj1.itemLocation = 0;
-            objects.Add(obj1);
+            //objects.Add(obj1);
 
             r1.objectsInRoom = obj1;
 
@@ -116,6 +120,7 @@ namespace CH8P1
             r7.westExit = false;
             //rooms.Add(r7);
 
+            //Set player's starting location
             playerOne.currentLocation = r1;
         }
 
@@ -140,7 +145,7 @@ namespace CH8P1
                 {
                     playerOne.currentLocation = r4;
                 }
-                mainRichTextBox.Text = "Player went North.";
+                mainRichTextBox.Text += "\nPlayer went North.";
             }
 
             if (userInputTextBox.Text.ToLower() == "go east")
@@ -153,7 +158,7 @@ namespace CH8P1
                 {
                     playerOne.currentLocation = r2;
                 }
-                mainRichTextBox.Text = "Player went East.";
+                mainRichTextBox.Text += "\nPlayer went East.";
             }
 
             if (userInputTextBox.Text.ToLower() == "go south")
@@ -178,7 +183,7 @@ namespace CH8P1
                 {
                     playerOne.currentLocation = r4;
                 }
-                mainRichTextBox.Text = "Player went South.";
+                mainRichTextBox.Text += "\nPlayer went South.";
             }
 
             if (userInputTextBox.Text.ToLower() == "go west")
@@ -187,12 +192,45 @@ namespace CH8P1
                 {
                     playerOne.currentLocation = r4;
                 }
-                mainRichTextBox.Text = "Player went West.";
+                mainRichTextBox.Text += "\nPlayer went West.";
             }
 
             if (userInputTextBox.Text.ToLower() == "look")
             {
                 mainRichTextBox.Text = playerOne.currentLocation.ToString();
+            }
+
+            if (playerOne.currentLocation == r1)
+            {
+                if (userInputTextBox.Text.ToLower() == "take candle")
+                {
+                    playerOne.playerBag += obj1;
+                    mainRichTextBox.Text += "\nYou have taken the Candle and it is now in your inventory.\n";
+                }
+            }
+
+            if (userInputTextBox.Text.ToLower() == "bag")
+            {
+                if (playerOne.playerBag == null)
+                {
+                    mainRichTextBox.Text += "\nThere is nothing in your bag.\n";
+                }
+                else
+                {
+                    mainRichTextBox.Text += playerOne.playerBag.ToString();
+                }
+            }
+
+            if (userInputTextBox.Text.ToLower() == "help")
+            {
+                mainRichTextBox.Text += "\nThe list of available commands for you to use are : \n" +
+                                        "Go North\n" +
+                                        "Go East\n" +
+                                        "Go South\n" +
+                                        "Go West\n" +
+                                        "Look\n" +
+                                        "Take\n" +
+                                        "Bag\n";
             }
 
             userInputTextBox.Focus();

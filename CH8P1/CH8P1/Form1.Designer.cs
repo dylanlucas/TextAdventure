@@ -39,7 +39,7 @@
             this.userInputTextBox.Location = new System.Drawing.Point(12, 452);
             this.userInputTextBox.Name = "userInputTextBox";
             this.userInputTextBox.Size = new System.Drawing.Size(487, 29);
-            this.userInputTextBox.TabIndex = 0;
+            this.userInputTextBox.TabIndex = 1;
             this.userInputTextBox.Text = "look";
             this.userInputTextBox.TextChanged += new System.EventHandler(this.userInputTextBox_TextChanged);
             // 
@@ -48,7 +48,7 @@
             this.submitButton.Location = new System.Drawing.Point(523, 452);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(75, 37);
-            this.submitButton.TabIndex = 1;
+            this.submitButton.TabIndex = 0;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
