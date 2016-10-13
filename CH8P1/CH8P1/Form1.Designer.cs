@@ -60,7 +60,7 @@
             this.mainRichTextBox.Name = "mainRichTextBox";
             this.mainRichTextBox.Size = new System.Drawing.Size(586, 424);
             this.mainRichTextBox.TabIndex = 2;
-            this.mainRichTextBox.Text = "Click Submit to begin.";
+            this.mainRichTextBox.Text = "";
             // 
             // Form1
             // 
