@@ -97,7 +97,7 @@ namespace CH8P1
             r4.roomName = "\nStairwell\n";
             r4.roomDescription = "You've found a stairwell, you can either go north which would lead you upstairs into an attic maybe?, or you can go south which would lead you downstairs to maybe the first level of the floor?, its hard to tell there is no direction here.\n";
             r4.northExit = true;
-            r4.eastExit = false;
+            r4.eastExit = true;
             r4.southExit = true;
             r4.westExit = false;
             //rooms.Add(r4);
@@ -168,6 +168,10 @@ namespace CH8P1
                     playerOne.currentLocation = r5;
                 }
                 if (playerOne.currentLocation == r5)
+                {
+                    playerOne.currentLocation = r2;
+                }
+                if (playerOne.currentLocation == r4)
                 {
                     playerOne.currentLocation = r2;
                 }
