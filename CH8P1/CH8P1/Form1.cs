@@ -15,9 +15,13 @@ namespace CH8P1
         //Initialize the Player Object
         Player playerOne = new Player();
 
+        //Initialize the Bag Object
+        //Bag playerBag = new Bag();
+        List<Bag> playerBag = new List<Bag>();
+
         //Initialize the List Objects
         //List<Room> rooms = new List<Room>();
-        List<Item> bag = new List<Item>();
+        //List<Item> bag = new List<Item>();
         List<Object> objects = new List<Object>();
 
         //Initialize Rooms;
@@ -32,6 +36,9 @@ namespace CH8P1
         //Initialize Objects;
         Object obj1 = new Object();
         Object obj2 = new Object();
+
+        //Set up the players bag items
+        Bag itemOne = new Bag();
 
         public Form1()
         {
@@ -53,7 +60,7 @@ namespace CH8P1
 
             //Object obj1 = new Object();
             obj1.itemID = 1;
-            obj1.itemName = "\nCandle\n";
+            obj1.itemName = "\nCandle";
             obj1.itemDescription = "\nA small candle with a dim light emitting from it.\n";
             obj1.itemLocation = 0;
             //objects.Add(obj1);
@@ -127,6 +134,7 @@ namespace CH8P1
 
             //Set player's starting location
             playerOne.currentLocation = r1;
+
         }
 
         private void userInputTextBox_TextChanged(object sender, EventArgs e)
@@ -209,26 +217,44 @@ namespace CH8P1
             {
                 if (userInputTextBox.Text.ToLower() == "take candle")
                 {
-                    //If statement so user can't take two candles when only one of those objects exists.
-                    //Not sure how to do this. Will wait for tuesday to ask Roy & Connor.
-                    //if ()
-                    //{
-                    //    mainRichTextBox.Text += "There is no item in this room for you to take.";
-                    //}
-                    playerOne.playerBag += obj1;
-                    mainRichTextBox.Text += "\nYou have taken the Candle and it is now in your inventory.\n";
+                    if (itemOne.bagContains == false)
+                    {
+                        itemOne.bagItemName = obj1.itemName;
+                        itemOne.bagItemDescription = obj1.itemDescription;
+                        itemOne.bagContains = true;
+                        playerBag.Add(itemOne);
+                        mainRichTextBox.Text += "\nYou have taken the Candle and it is now in your inventory.\n";
+                    }
+                    else
+                    {
+                        mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
+                    }
                 }
             }
 
-            if (userInputTextBox.Text.ToLower() == "bag")
+            if (userInputTextBox.Text.ToLower() == "drop candle")
             {
-                if (playerOne.playerBag == null)
+                if (itemOne.bagContains == false)
                 {
-                    mainRichTextBox.Text += "\nThere is nothing in your bag.\n";
+                    mainRichTextBox.Text += "\nThere is nothing to drop from your bag.\n";
                 }
                 else
                 {
-                    mainRichTextBox.Text += playerOne.playerBag.ToString();
+                    playerBag.Remove(itemOne);
+                    itemOne.bagContains = false;
+                    mainRichTextBox.Text += "\nYou have removed the Candle from your inventory.\n";
+                }
+            }
+
+            if (userInputTextBox.Text == "bag")
+            {
+                if(itemOne.bagContains == false)
+                {
+                    mainRichTextBox.Text += "\nYou don't have anything in your inventory.\n";
+                }
+                else if(itemOne.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
                 }
             }
 
@@ -241,26 +267,12 @@ namespace CH8P1
                                         "Go West\n" +
                                         "Look\n" +
                                         "Take\n" +
+                                        "Drop\n" +
                                         "Bag\n";
             }
 
             userInputTextBox.Focus();
             userInputTextBox.Text = "";
-
-            //else if (userInput == "take")
-            //{
-            //    if (playerOne.currentLocation.ToString() == "Bed Room")
-            //    {
-            //        /**
-            //         * IDK HOW TO GET THIS TO WORK MY MIND DOESN'T WANNA FIGURE THIS OUT GONNA WAIT FOR CONNER AND ROY ON TUESDAY TO HELP ME OUT AHHAHAHAHAHAH :'(
-            //         */
-
-            //        //mainRichTextBox.Text = "You have taken the Candle and are now holding it in your hand.";
-            //        //playerOne.currentItemInventory += bag.Add(obj1);
-
-            //        mainRichTextBox.Text = "This command does not work properly yet!";
-            //    }
-            //}
         }
     }
 }
