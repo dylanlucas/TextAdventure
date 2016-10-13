@@ -39,6 +39,7 @@ namespace CH8P1
 
         //Set up the players bag items
         Bag itemOne = new Bag();
+        Bag itemTwo = new Bag();
 
         public Form1()
         {
@@ -56,18 +57,14 @@ namespace CH8P1
             r1.eastExit = false;
             r1.southExit = true;
             r1.westExit = false;
-            //rooms.Add(r1);
 
-            //Object obj1 = new Object();
             obj1.itemID = 1;
             obj1.itemName = "\nCandle";
             obj1.itemDescription = "\nA small candle with a dim light emitting from it.\n";
             obj1.itemLocation = 0;
-            //objects.Add(obj1);
 
             r1.objectsInRoom = obj1;
 
-            //Room r2 = new Room();
             r2.roomID = 1;
             r2.roomName = "\nHallway\n";
             r2.roomDescription = "You've left the Bed Room and are now in a hallway. You can see to your left and right a bit and notice that there are many doors, most closed, but one wide open with a flickering light coming from it.\n" +
@@ -76,23 +73,21 @@ namespace CH8P1
             r2.eastExit = true;
             r2.southExit = true;
             r2.westExit = true;
-            //rooms.Add(r2);
-
-            //Room r3 = new Room();
+            
             r3.roomID = 2;
             r3.roomName = "\nBathroom\n";
-            r3.roomDescription = "You've left the hallway and have entered a Bathroom. You look around and see stains all around the walls. Not only do you see the stains but you smell something horrendous. You start to feel sick.\n";
+            r3.roomDescription = "You've left the hallway and have entered a Bathroom. You look around and see stains all around the walls. Not only do you see the stains but you smell something horrendous. You start to feel sick.\n" +
+                                  "After looking around you see that there is a piece of glass from the mirror that can easily be taken and used as a weapon?..\n";
             r3.northExit = false;
             r3.eastExit = false;
             r3.southExit = true;
             r3.westExit = false;
-            //rooms.Add(r3);
 
             obj2.itemID = 2;
             obj2.itemName = "\nPiece of Glass";
-            
+            obj2.itemDescription = "\nA piece of the mirror that was laying on the sink in the Bathroom. Looks pretty sharp. Be careful with it.\n";
+            obj2.itemLocation = 2;
 
-            //Room r4 = new Room();
             r4.roomID = 3;
             r4.roomName = "\nStairwell\n";
             r4.roomDescription = "You've found a stairwell, you can either go north which would lead you upstairs into an attic maybe?, or you can go south which would lead you downstairs to maybe the first level of the floor?, its hard to tell there is no direction here.\n";
@@ -100,9 +95,7 @@ namespace CH8P1
             r4.eastExit = true;
             r4.southExit = true;
             r4.westExit = false;
-            //rooms.Add(r4);
 
-            //Room r5 = new Room();
             r5.roomID = 4;
             r5.roomName = "\nRoom with a TV\n";
             r5.roomDescription = "You decided to go towards the room with the flickering light. You entered the room and notice that there was a TV on with no signal, just the black and white static.\n";
@@ -110,9 +103,7 @@ namespace CH8P1
             r5.eastExit = true;
             r5.southExit = false;
             r5.westExit = false;
-            //rooms.Add(r5);
 
-            //Room r6 = new Room();
             r6.roomID = 5;
             r6.roomName = "\nThe Attic\n";
             r6.roomDescription = "You decided to go up the stairwell and have found yourself in an attic. You see tons of boxes and old paintings.\n";
@@ -120,9 +111,7 @@ namespace CH8P1
             r6.eastExit = false;
             r6.southExit = true;
             r6.westExit = false;
-            //rooms.Add(r6);
 
-            //Room r7 = new Room();
             r7.roomID = 6;
             r7.roomName = "\nFirst Floor\n";
             r7.roomDescription = "You decided to go down the stairwell and have found yourself in the main lobby room of this house... or you think so the stairs don't lead further down.\n";
@@ -130,11 +119,8 @@ namespace CH8P1
             r7.eastExit = false;
             r7.southExit = false;
             r7.westExit = false;
-            //rooms.Add(r7);
 
-            //Set player's starting location
             playerOne.currentLocation = r1;
-
         }
 
         private void userInputTextBox_TextChanged(object sender, EventArgs e)
@@ -234,19 +220,43 @@ namespace CH8P1
                         mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
                     }
                 }
+                else if (userInputTextBox.Text.ToLower() == "take glass")
+                {
+                    if (itemTwo.bagContains == false)
+                    {
+                        itemTwo.bagItemName = obj2.itemName;
+                        itemTwo.bagItemDescription = obj2.itemDescription;
+                        itemTwo.bagContains = true;
+                        playerBag.Add(itemTwo);
+                        mainRichTextBox.Text += "\nYou have taken the piece of Glass and it is now in your inventory.\n";
+                    }
+                }
             }
 
             if (userInputTextBox.Text.ToLower() == "drop candle")
             {
                 if (itemOne.bagContains == false)
                 {
-                    mainRichTextBox.Text += "\nThere is nothing to drop from your bag.\n";
+                    mainRichTextBox.Text += "\nThere is no candle to drop from your bag.\n";
                 }
                 else
                 {
                     playerBag.Remove(itemOne);
                     itemOne.bagContains = false;
                     mainRichTextBox.Text += "\nYou have removed the Candle from your inventory.\n";
+                }
+            }
+            else if(userInputTextBox.Text.ToLower() == "drop glass")
+            {
+                if(itemTwo.bagContains == false)
+                {
+                    mainRichTextBox.Text += "\nThere is no glass to drop from your bag.\n";
+                }
+                else
+                {
+                    playerBag.Remove(itemTwo);
+                    itemTwo.bagContains = false;
+                    mainRichTextBox.Text += "\nYou have removed the Glass from your inventory.\n";
                 }
             }
 
