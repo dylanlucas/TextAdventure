@@ -36,10 +36,14 @@ namespace CH8P1
         //Initialize Objects;
         Object obj1 = new Object();
         Object obj2 = new Object();
+        Object obj3 = new Object();
+        Object obj4 = new Object();
 
         //Set up the players bag items
         Bag itemOne = new Bag();
         Bag itemTwo = new Bag();
+        Bag itemThree = new Bag();
+        Bag itemFour = new Bag();
 
         public Form1()
         {
@@ -104,6 +108,11 @@ namespace CH8P1
             r5.southExit = false;
             r5.westExit = false;
 
+            obj3.itemID = 3;
+            obj3.itemName = "\nKey";
+            obj3.itemDescription = "\nA bronze key, could unlock something...\n";
+            obj3.itemLocation = 4;
+
             r6.roomID = 5;
             r6.roomName = "\nThe Attic\n";
             r6.roomDescription = "You decided to go up the stairwell and have found yourself in an attic. You see tons of boxes and old paintings.\n";
@@ -111,6 +120,11 @@ namespace CH8P1
             r6.eastExit = false;
             r6.southExit = true;
             r6.westExit = false;
+
+            obj4.itemID = 4;
+            obj4.itemName = "\nChest";
+            obj4.itemDescription = "\nA big wooden chest... probably contains something..\n";
+            obj4.itemLocation = 5;
 
             r7.roomID = 6;
             r7.roomName = "\nFirst Floor\n";
@@ -220,7 +234,11 @@ namespace CH8P1
                         mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
                     }
                 }
-                else if (userInputTextBox.Text.ToLower() == "take glass")
+            }
+
+            if (playerOne.currentLocation == r3)
+            {
+                if (userInputTextBox.Text.ToLower() == "take glass")
                 {
                     if (itemTwo.bagContains == false)
                     {
@@ -229,6 +247,51 @@ namespace CH8P1
                         itemTwo.bagContains = true;
                         playerBag.Add(itemTwo);
                         mainRichTextBox.Text += "\nYou have taken the piece of Glass and it is now in your inventory.\n";
+                    }
+                    else
+                    {
+                        mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
+                    }
+                }
+            }
+
+            if (playerOne.currentLocation == r5)
+            {
+                if (userInputTextBox.Text.ToLower() == "take key")
+                {
+                    if (itemThree.bagContains == false)
+                    {
+                        itemThree.bagItemName = obj3.itemName;
+                        itemThree.bagItemDescription = obj3.itemDescription;
+                        itemThree.bagContains = true;
+                        playerBag.Add(itemThree);
+                        mainRichTextBox.Text += "\nYou have taken the Key and it is now in your inventory.\n";
+                    }
+                    else
+                    {
+                        mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
+                    }
+                }
+            }
+
+            if (playerOne.currentLocation == r6)
+            {
+                if (userInputTextBox.Text.ToLower() == "open chest")
+                {
+                    if (itemThree.bagContains == true)
+                    {
+                        if (itemFour.bagContains == false)
+                        {
+                            itemFour.bagItemName = "Sword";
+                            itemFour.bagItemDescription = "A very shiny, sharp sword.";
+                            itemFour.bagContains = true;
+                            playerBag.Add(itemFour);
+                            mainRichTextBox.Text += "\nYou have taken the Sword and it is now in your inventory.\n";
+                        }
+                        else
+                        {
+                            mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
+                        }
                     }
                 }
             }
@@ -259,6 +322,32 @@ namespace CH8P1
                     mainRichTextBox.Text += "\nYou have removed the Glass from your inventory.\n";
                 }
             }
+            else if(userInputTextBox.Text.ToLower() == "drop key")
+            {
+                if(itemThree.bagContains == false)
+                {
+                    mainRichTextBox.Text += "\nThere is no key to drop from your bag.\n";
+                }
+                else
+                {
+                    playerBag.Remove(itemThree);
+                    itemThree.bagContains = false;
+                    mainRichTextBox.Text += "\nYou have removed the Key from your inventory.\n";
+                }
+            }
+            else if(userInputTextBox.Text.ToLower() == "drop sword")
+            {
+                if(itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += "\nThere is no sword to drop from your bag.\n";
+                }
+                else
+                {
+                    playerBag.Remove(itemFour);
+                    itemFour.bagContains = false;
+                    mainRichTextBox.Text += "\nYou have removed the Sword from your inventory.\n";
+                }
+            }
 
             if (userInputTextBox.Text == "bag")
             {
@@ -282,6 +371,7 @@ namespace CH8P1
                                         "Look\n" +
                                         "Take\n" +
                                         "Drop\n" +
+                                        "Open\n" +
                                         "Bag\n";
             }
 
