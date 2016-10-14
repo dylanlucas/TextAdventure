@@ -32,6 +32,11 @@ namespace CH8P1
         Room r5 = new Room();
         Room r6 = new Room();
         Room r7 = new Room();
+        Room r8 = new Room();
+        Room r9 = new Room();
+        Room r10 = new Room();
+        Room r11 = new Room();
+        Room r12 = new Room();
 
         //Initialize Objects;
         Object obj1 = new Object();
@@ -44,6 +49,9 @@ namespace CH8P1
         Bag itemTwo = new Bag();
         Bag itemThree = new Bag();
         Bag itemFour = new Bag();
+
+        //Set up the Chest Objects
+        Chest chest1 = new Chest();
 
         public Form1()
         {
@@ -96,9 +104,9 @@ namespace CH8P1
             r4.roomName = "\nStairwell\n";
             r4.roomDescription = "You've found a stairwell, you can either go north which would lead you upstairs into an attic maybe?, or you can go south which would lead you downstairs to maybe the first level of the floor?, its hard to tell there is no direction here.\n";
             r4.northExit = true;
-            r4.eastExit = true;
+            r4.eastExit = false;
             r4.southExit = true;
-            r4.westExit = false;
+            r4.westExit = true;
 
             r5.roomID = 4;
             r5.roomName = "\nRoom with a TV\n";
@@ -127,12 +135,53 @@ namespace CH8P1
             obj4.itemLocation = 5;
 
             r7.roomID = 6;
-            r7.roomName = "\nFirst Floor\n";
-            r7.roomDescription = "You decided to go down the stairwell and have found yourself in the main lobby room of this house... or you think so the stairs don't lead further down.\n";
+            r7.roomName = "\nFirst Floor Stairwell\n";
+            r7.roomDescription = "\nYou decided to go down the stairwell and have found yourself in the first floor stairwell of this house... or you think so the stairs don't lead further down.\n";
             r7.northExit = true;
             r7.eastExit = false;
             r7.southExit = false;
-            r7.westExit = false;
+            r7.westExit = true;
+
+            r8.roomID = 7;
+            r8.roomName = "\nFirst Floor Lobby\n";
+            r8.roomDescription = "\nYou entered the first floor Lobby area, you see a door infront of you and to both sides of the room. It resembles the Hallway you entered when you left the first room.\n";
+            r8.northExit = true;
+            r8.eastExit = true;
+            r8.southExit = true;
+            r8.westExit = true;
+
+            r9.roomID = 8;
+            r9.roomName = "\nThe Kitchen\n";
+            r9.roomDescription = "\nYou smell something wonderful cooking in this room but aren't sure of what it is. It is clear now that you are in the Kitchen.\n";
+            r9.northExit = false;
+            r9.eastExit = false;
+            r9.southExit = true;
+            r9.westExit = false;
+
+            r10.roomID = 9;
+            r10.roomName = "\nThe Boss Room\n";
+            r10.roomDescription = "\nYou found the main person... creature... thing that lives here he's sleeping away.. You see a key next to him... you could try and take it.. its probably useful.\n";
+            r10.northExit = false;
+            r10.eastExit = true;
+            r10.southExit = false;
+            r10.westExit = false;
+
+            r11.roomID = 10;
+            r11.roomName = "\nThe House Exit\n";
+            r11.roomDescription = "\nYou finally escaped whatever this weird place you were in... its time for you to get back home.\n";
+            r11.northExit = true;
+            r11.eastExit = true;
+            r11.southExit = true;
+            r11.westExit = true;
+
+            r12.roomID = 11;
+            r12.roomName = "\nAbyss\n";
+            r12.roomDescription = "\nThere is no where to go from here.\n";
+            r12.northExit = false;
+            r12.eastExit = false;
+            r12.southExit = false;
+            r12.westExit = false;
+
 
             playerOne.currentLocation = r1;
         }
@@ -144,78 +193,256 @@ namespace CH8P1
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            if (userInputTextBox.Text.ToLower() == "go north")
+
+            //Movement System between all 12 Rooms.
+
+            if (playerOne.currentLocation == r1)
             {
-                if (playerOne.currentLocation == r2)
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    mainRichTextBox.Text += "\nThere is no North exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    mainRichTextBox.Text += "\nThere is no East exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
+                {
+                    playerOne.currentLocation = r2;
+                    mainRichTextBox.Text += "\nYou went South.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+                    mainRichTextBox.Text += "\nThere is no West exit.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r2)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
                 {
                     playerOne.currentLocation = r3;
+                    mainRichTextBox.Text += "\nYou went North.\n";
                 }
-                else if (playerOne.currentLocation == r4)
-                {
-                    playerOne.currentLocation = r6;
-                }
-                else if (playerOne.currentLocation == r7)
+                else if (userInputTextBox.Text.ToLower() == "go east")
                 {
                     playerOne.currentLocation = r4;
+                    mainRichTextBox.Text += "\nYou went East.\n";
                 }
-                mainRichTextBox.Text += "\nPlayer went North.\n";
-            }
-
-            if (userInputTextBox.Text.ToLower() == "go east")
-            {
-                if (playerOne.currentLocation == r2)
-                {
-                    playerOne.currentLocation = r5;
-                }
-                if (playerOne.currentLocation == r5)
-                {
-                    playerOne.currentLocation = r2;
-                }
-                if (playerOne.currentLocation == r4)
-                {
-                    playerOne.currentLocation = r2;
-                }
-                mainRichTextBox.Text += "\nPlayer went East.\n";
-            }
-
-            if (userInputTextBox.Text.ToLower() == "go south")
-            {
-                if (playerOne.currentLocation == r1)
-                {
-                    playerOne.currentLocation = r2;
-                }
-                else if (playerOne.currentLocation == r2)
+                else if (userInputTextBox.Text.ToLower() == "go south")
                 {
                     playerOne.currentLocation = r1;
+                    mainRichTextBox.Text += "\nYou went South.\n";
                 }
-                else if (playerOne.currentLocation == r3)
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+                    playerOne.currentLocation = r5;
+                    mainRichTextBox.Text += "\nYou went West.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r3)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    mainRichTextBox.Text += "\nThere is no North exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    mainRichTextBox.Text += "\nThere is no East exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
                 {
                     playerOne.currentLocation = r2;
+                    mainRichTextBox.Text += "\nYou went South.\n";
                 }
-                else if (playerOne.currentLocation == r4)
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+                    mainRichTextBox.Text += "\nThere is no West exit.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r4)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    playerOne.currentLocation = r6;
+                    mainRichTextBox.Text += "\nYou went North.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    mainRichTextBox.Text += "\nThere is no East exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
                 {
                     playerOne.currentLocation = r7;
+                    mainRichTextBox.Text += "\nYou went South.\n";
                 }
-                else if (playerOne.currentLocation == r6)
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+                    playerOne.currentLocation = r2;
+                    mainRichTextBox.Text += "\nYou went West.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r5)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    mainRichTextBox.Text += "\nThere is no North exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    playerOne.currentLocation = r2;
+                    mainRichTextBox.Text += "\nYou went East.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
+                {
+                    mainRichTextBox.Text += "\nThere is no South exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+                    mainRichTextBox.Text += "\nThere is no West exit.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r6)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    mainRichTextBox.Text += "\nThere is no North exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    mainRichTextBox.Text += "\nThere is no East exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
                 {
                     playerOne.currentLocation = r4;
+                    mainRichTextBox.Text += "\nYou went South.\n";
                 }
-                mainRichTextBox.Text += "\nPlayer went South.\n";
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+                    mainRichTextBox.Text += "\nThere is no West exit.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r7)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    playerOne.currentLocation = r4;
+                    mainRichTextBox.Text += "\nYou went North.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    mainRichTextBox.Text += "\nThere is no East exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
+                {
+                    mainRichTextBox.Text += "\nThere is no South exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+                    playerOne.currentLocation = r8;
+                    mainRichTextBox.Text += "\nYou went West.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r8)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    playerOne.currentLocation = r9;
+                    mainRichTextBox.Text += "\nYou went North.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    playerOne.currentLocation = r7;
+                    mainRichTextBox.Text += "\nYou went East.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
+                {
+                    playerOne.currentLocation = r11;
+                    mainRichTextBox.Text += "\nPlayer went South.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+
+                    mainRichTextBox.Text += "\nPlayer went West.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r9)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    mainRichTextBox.Text += "\nThere is no North exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    mainRichTextBox.Text += "\nThere is no East exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
+                {
+                    playerOne.currentLocation = r8;
+                    mainRichTextBox.Text += "\nPlayer went South.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+
+                    mainRichTextBox.Text += "\nThere is no West exit.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r10)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    mainRichTextBox.Text += "\nThere is no North exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    playerOne.currentLocation = r8;
+                    mainRichTextBox.Text += "\nPlayer went East.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
+                {
+                    mainRichTextBox.Text += "\nThere is no South exit.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+
+                    mainRichTextBox.Text += "\nThere is no West exit.\n";
+                }
+            }
+            else if(playerOne.currentLocation == r11)
+            {
+                if (userInputTextBox.Text.ToLower() == "go north")
+                {
+                    playerOne.currentLocation = r8;
+                    mainRichTextBox.Text += "\nYou went North.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go east")
+                {
+                    mainRichTextBox.Text += "\nYou went East.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go south")
+                {
+                    mainRichTextBox.Text += "\nYou went South.\n";
+                }
+                else if (userInputTextBox.Text.ToLower() == "go west")
+                {
+
+                    mainRichTextBox.Text += "\nYou went West.\n";
+                }
+            }
+            else
+            {
+                mainRichTextBox.Text += "\nEnd the Game.\n";
             }
 
-            if (userInputTextBox.Text.ToLower() == "go west")
-            {
-                if (playerOne.currentLocation == r2)
-                {
-                    playerOne.currentLocation = r4;
-                }
-                mainRichTextBox.Text += "\nPlayer went West.\n";
-            }
+            //Command Look to see what is in each room
 
             if (userInputTextBox.Text.ToLower() == "look")
             {
                 mainRichTextBox.Text += playerOne.currentLocation.ToString();
             }
+
+            //take Command methods per room for specific items
+            //Includes the unlock method to open the chest
+            //and Open method to open the unlocked chest
 
             if (playerOne.currentLocation == r1)
             {
@@ -276,23 +503,49 @@ namespace CH8P1
 
             if (playerOne.currentLocation == r6)
             {
-                if (userInputTextBox.Text.ToLower() == "open chest")
+                if (userInputTextBox.Text.ToLower() == "unlock chest") 
                 {
-                    if (itemThree.bagContains == true)
+                    if (chest1.isUnlocked == false)
                     {
-                        if (itemFour.bagContains == false)
+                        if (itemThree.bagContains == true)
                         {
-                            itemFour.bagItemName = "Sword";
-                            itemFour.bagItemDescription = "A very shiny, sharp sword.";
-                            itemFour.bagContains = true;
-                            playerBag.Add(itemFour);
-                            mainRichTextBox.Text += "\nYou have taken the Sword and it is now in your inventory.\n";
+                            chest1.isUnlocked = true;
+                            playerBag.Remove(itemThree);
+                            itemThree.bagContains = false;
+                            mainRichTextBox.Text += "\nYou have unlocked the chest.\n";
                         }
                         else
                         {
-                            mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
+                            mainRichTextBox.Text += "\nYou do not have the key to unlock this chest.\n";
                         }
                     }
+                    else
+                    {
+                        mainRichTextBox.Text += "\nThe chest is already unlocked.\n";
+                    }
+                }
+            }
+
+            if (userInputTextBox.Text.ToLower() == "open chest")
+            {
+                if (chest1.isUnlocked == true)
+                {
+                    if (itemFour.bagContains == false)
+                    {
+                        itemFour.bagItemName = "Sword";
+                        itemFour.bagItemDescription = "A very shiny, sharp sword.";
+                        itemFour.bagContains = true;
+                        playerBag.Add(itemFour);
+                        mainRichTextBox.Text += "\nYou have taken the Sword and it is now in your inventory.\n";
+                    }
+                    else
+                    {
+                        mainRichTextBox.Text += "\nThis item is already in your inventory.\n";
+                    }
+                }
+                else
+                {
+                    mainRichTextBox.Text += "\nThe chest is not unlocked.\n";
                 }
             }
 
@@ -349,15 +602,100 @@ namespace CH8P1
                 }
             }
 
-            if (userInputTextBox.Text == "bag")
+            if (userInputTextBox.Text == "inventory")
             {
-                if(itemOne.bagContains == false)
+
+                // IF YOU HAVE ITEM ONE BUT NOT CERTAIN OTHER ITEMS
+
+                if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false)
                 {
                     mainRichTextBox.Text += "\nYou don't have anything in your inventory.\n";
                 }
-                else if(itemOne.bagContains == true)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemTwo.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+
+                //IF YOU HAVE ITEM TWO BUT NOT CERTAIN OTHER ITEMS
+
+                else if(itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemTwo.ToString();
+                }
+                
+                // IF YOU HAVE ITEM THREE BUT NOT CERTAIN OTHER ITEMS
+
+                else if(itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemThree.ToString();
+                }
+
+                // IF YOU HAVE ITEM FOUR BUT NOT CERTAIN OTHER ITEMS
+
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemFour.ToString();
                 }
             }
 
@@ -371,8 +709,9 @@ namespace CH8P1
                                         "Look\n" +
                                         "Take\n" +
                                         "Drop\n" +
+                                        "Unlock\n" +
                                         "Open\n" +
-                                        "Bag\n";
+                                        "Inventory\n";
             }
 
             userInputTextBox.Focus();
