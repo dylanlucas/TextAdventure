@@ -113,6 +113,7 @@ namespace CH8P1
             r5.roomID = 4;
             r5.roomName = "Room with a TV\n";
             r5.roomDescription = "You decided to go towards the room with the flickering light. You entered the room and notice that there was a TV on with no signal, just the black and white static.\n" +
+                                 "You see that there is a key on the nightstand next to the TV... you could take it.\n" +
                                  "You see that there is one exit around you, to your East.\n";
             r5.northExit = false;
             r5.eastExit = true;
@@ -522,7 +523,7 @@ namespace CH8P1
                             chest1.isUnlocked = true;
                             playerBag.Remove(itemThree);
                             itemThree.bagContains = false;
-                            mainRichTextBox.Text += "You have unlocked the chest.\n";
+                            mainRichTextBox.Text += "You have unlocked the chest.\n\n";
                         }
                         else
                         {
@@ -543,7 +544,7 @@ namespace CH8P1
                     if (itemFour.bagContains == false)
                     {
                         itemFour.bagItemName = "Sword\n";
-                        itemFour.bagItemDescription = "A very shiny, sharp sword.\n";
+                        itemFour.bagItemDescription = "A very shiny, sharp sword.\n\n";
                         itemFour.bagContains = true;
                         playerBag.Add(itemFour);
                         mainRichTextBox.Text += "You have taken the Sword and it is now in your inventory.\n\n";
@@ -569,7 +570,7 @@ namespace CH8P1
                 {
                     playerBag.Remove(itemOne);
                     itemOne.bagContains = false;
-                    mainRichTextBox.Text += "You have removed the Candle from your inventory.\n";
+                    mainRichTextBox.Text += "You have removed the Candle from your inventory.\n\n";
                 }
             }
             else if(userInputTextBox.Text.ToLower() == "drop glass")
@@ -582,7 +583,7 @@ namespace CH8P1
                 {
                     playerBag.Remove(itemTwo);
                     itemTwo.bagContains = false;
-                    mainRichTextBox.Text += "You have removed the Glass from your inventory.\n";
+                    mainRichTextBox.Text += "You have removed the Glass from your inventory.\n\n";
                 }
             }
             else if(userInputTextBox.Text.ToLower() == "drop key")
@@ -595,14 +596,14 @@ namespace CH8P1
                 {
                     playerBag.Remove(itemThree);
                     itemThree.bagContains = false;
-                    mainRichTextBox.Text += "You have removed the Key from your inventory.\n";
+                    mainRichTextBox.Text += "You have removed the Key from your inventory.\n\n";
                 }
             }
             else if(userInputTextBox.Text.ToLower() == "drop sword")
             {
                 if(itemFour.bagContains == false)
                 {
-                    mainRichTextBox.Text += "There is no sword to drop from your bag.\n";
+                    mainRichTextBox.Text += "There is no sword to drop from your bag.\n\n";
                 }
                 else
                 {
@@ -619,7 +620,7 @@ namespace CH8P1
 
                 if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false)
                 {
-                    mainRichTextBox.Text += "You don't have anything in your inventory.\n";
+                    mainRichTextBox.Text += "You don't have anything in your inventory.\n\n";
                 }
                 else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true)
                 {
@@ -727,7 +728,7 @@ namespace CH8P1
                                         "Drop\n" +
                                         "Unlock\n" +
                                         "Open\n" +
-                                        "Inventory\n";
+                                        "Inventory\n\n";
             }
 
             userInputTextBox.Focus();
