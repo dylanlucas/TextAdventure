@@ -42,7 +42,7 @@ namespace CH8P1
         {
             String output;
 
-            output = roomName + roomDescription;
+            output = roomName + "\n" + roomDescription + "\n";
             return output;
         }
     }

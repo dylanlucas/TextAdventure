@@ -17,7 +17,7 @@ namespace CH8P1
         {
             String output;
 
-            output = bagItemName + "\n" + bagItemDescription + "\n";
+            output = bagItemName + bagItemDescription + "\n";
             return output;
         }
 
