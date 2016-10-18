@@ -40,12 +40,14 @@ namespace CH8P1
         Object obj2 = new Object();
         Object obj3 = new Object();
         Object obj4 = new Object();
+        Object obj5 = new Object();
 
         //Set up the players bag items
         Bag itemOne = new Bag();
         Bag itemTwo = new Bag();
         Bag itemThree = new Bag();
         Bag itemFour = new Bag();
+        Bag itemFive = new Bag();
 
         //Set up the Chest Objects
         Chest chest1 = new Chest();
@@ -165,6 +167,11 @@ namespace CH8P1
             r9.eastExit = false;
             r9.southExit = true;
             r9.westExit = false;
+
+            obj5.itemID = 5;
+            obj5.itemName = "Knife\n\n";
+            obj5.itemDescription = "It's a Knife... good for cooking.. and stabbing...\n";
+            obj5.itemLocation = 8;
 
             r10.roomID = 9;
             r10.roomName = "The Boss Room\n";
@@ -560,6 +567,21 @@ namespace CH8P1
                 }
             }
 
+            if (playerOne.currentLocation == r9)
+            {
+                if (userInputTextBox.Text.ToLower() == "take knife")
+                {
+                    if (itemFive.bagContains == false)
+                    {
+                        itemFive.bagItemName = obj5.itemName;
+                        itemFive.bagItemDescription = obj5.itemDescription;
+                        itemFive.bagContains = true;
+                        playerBag.Add(itemFive);
+                        mainRichTextBox.Text += "You have taken the Knife and it is now in your inventory.\n\n";
+                    }
+                }
+            }
+
             if (userInputTextBox.Text.ToLower() == "drop candle")
             {
                 if (itemOne.bagContains == false)
@@ -612,101 +634,197 @@ namespace CH8P1
                     mainRichTextBox.Text += "You have removed the Sword from your inventory.\n";
                 }
             }
+            else if(userInputTextBox.Text.ToLower() == "drop knife")
+            {
+                if(itemFive.bagContains == false)
+                {
+                    mainRichTextBox.Text += "There is no knife to drop from your bag.\n\n";
+                }
+                else
+                {
+                    playerBag.Remove(itemFive);
+                    itemFive.bagContains = false;
+                    mainRichTextBox.Text += "You have removed the Knife from your invnetory.\n";
+                }
+            }
 
             if (userInputTextBox.Text == "inventory")
             {
 
                 // IF YOU HAVE ITEM ONE BUT NOT CERTAIN OTHER ITEMS
 
-                if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false)
+                if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += "You don't have anything in your inventory.\n\n";
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
                     mainRichTextBox.Text += itemTwo.ToString();
                     mainRichTextBox.Text += itemThree.ToString();
                     mainRichTextBox.Text += itemFour.ToString();
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == false)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
                     mainRichTextBox.Text += itemTwo.ToString();
                     mainRichTextBox.Text += itemThree.ToString();
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
                     mainRichTextBox.Text += itemTwo.ToString();
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == true)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == true && itemFive.bagContains == true)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
                     mainRichTextBox.Text += itemThree.ToString();
                     mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == true && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
                     mainRichTextBox.Text += itemFour.ToString();
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
                     mainRichTextBox.Text += itemThree.ToString();
                 }
-                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == true)
+                else if (itemOne.bagContains == true && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemOne.ToString();
-                    mainRichTextBox.Text += itemThree.ToString();
-                    mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemTwo.ToString();
+                }
+                else if (itemOne.bagContains == true && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemOne.ToString();
                 }
 
                 //IF YOU HAVE ITEM TWO BUT NOT CERTAIN OTHER ITEMS
 
-                else if(itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true)
+                else if(itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == true && itemFive.bagContains == true)
                 {
                     mainRichTextBox.Text += itemTwo.ToString();
                     mainRichTextBox.Text += itemThree.ToString();
                     mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
                 }
-                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == false)
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == false && itemFive.bagContains == true)
                 {
                     mainRichTextBox.Text += itemTwo.ToString();
                     mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
                 }
-                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == true)
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == true && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == true && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemTwo.ToString();
                     mainRichTextBox.Text += itemFour.ToString();
                 }
-                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false)
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == true && itemFour.bagContains == false && itemFive.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemTwo.ToString();
+                    mainRichTextBox.Text += itemThree.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == true && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemTwo.ToString();
                 }
                 
                 // IF YOU HAVE ITEM THREE BUT NOT CERTAIN OTHER ITEMS
 
-                else if(itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == true)
+                else if(itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == true && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemThree.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == true && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemThree.ToString();
                     mainRichTextBox.Text += itemFour.ToString();
                 }
-                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false)
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == true && itemFour.bagContains == false && itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += itemThree.ToString();
                 }
 
                 // IF YOU HAVE ITEM FOUR BUT NOT CERTAIN OTHER ITEMS
 
-                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true)
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true && itemFive.bagContains == true)
                 {
                     mainRichTextBox.Text += itemFour.ToString();
+                    mainRichTextBox.Text += itemFive.ToString();
+                }
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == true && itemFive.bagContains == false)
+                {
+                    mainRichTextBox.Text += itemFour.ToString();
+                }
+
+                // IF YOU HAVE ITEM FIVE BUT NOT CERTAIN OTHER ITEMS
+
+                else if (itemOne.bagContains == false && itemTwo.bagContains == false && itemThree.bagContains == false && itemFour.bagContains == false && itemFive.bagContains == true)
+                {
+                    mainRichTextBox.Text += itemFive.ToString();
                 }
             }
 
