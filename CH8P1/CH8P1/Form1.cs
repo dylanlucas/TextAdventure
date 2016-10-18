@@ -730,6 +730,10 @@ namespace CH8P1
                                         "Open\n" +
                                         "Inventory\n\n";
             }
+            this.AcceptButton = submitButton;
+
+            mainRichTextBox.SelectionStart = mainRichTextBox.Text.Length;
+            mainRichTextBox.ScrollToCaret();
 
             userInputTextBox.Focus();
             userInputTextBox.Text = "";
