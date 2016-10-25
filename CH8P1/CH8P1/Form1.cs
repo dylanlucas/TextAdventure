@@ -52,6 +52,10 @@ namespace CH8P1
         //Set up the Chest Objects
         Chest chest1 = new Chest();
 
+        //Set up playerScore
+        Score score = new Score();
+        int pointsPerAction = 0;       //sets the points per action
+
         public Form1()
         {
             InitializeComponent();
@@ -211,6 +215,11 @@ namespace CH8P1
 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            //Show score
+            if (userInputTextBox.Text.ToLower() == "score")
+            {
+                mainRichTextBox.Text += score.ToString() + "\n";
+            }
 
             //Movement System between all 12 Rooms.
 
@@ -472,7 +481,11 @@ namespace CH8P1
                         itemOne.bagItemDescription = obj1.itemDescription;
                         itemOne.bagContains = true;
                         playerBag.Add(itemOne);
-                        mainRichTextBox.Text += "You have taken the Candle and it is now in your inventory.\n\n";
+                        pointsPerAction = 50;
+                        score.currentScore += pointsPerAction;
+                        score.isActionCompleted = true;
+                        mainRichTextBox.Text += "You have taken the Candle and it is now in your inventory. You have gained 50 points\n\n";
+                        
                     }
                     else
                     {
@@ -491,7 +504,10 @@ namespace CH8P1
                         itemTwo.bagItemDescription = obj2.itemDescription;
                         itemTwo.bagContains = true;
                         playerBag.Add(itemTwo);
-                        mainRichTextBox.Text += "You have taken the piece of Glass and it is now in your inventory.\n\n";
+                        pointsPerAction = 50;
+                        score.currentScore += pointsPerAction;
+                        score.isActionCompleted = true;
+                        mainRichTextBox.Text += "You have taken the piece of Glass and it is now in your inventory. You have gained 50 points\n\n";
                     }
                     else
                     {
@@ -510,7 +526,10 @@ namespace CH8P1
                         itemThree.bagItemDescription = obj3.itemDescription;
                         itemThree.bagContains = true;
                         playerBag.Add(itemThree);
-                        mainRichTextBox.Text += "You have taken the Key and it is now in your inventory.\n\n";
+                        pointsPerAction = 50;
+                        score.currentScore += pointsPerAction;
+                        score.isActionCompleted = true;
+                        mainRichTextBox.Text += "You have taken the Key and it is now in your inventory. You have gained 50 points\n\n";
                     }
                     else
                     {
@@ -530,7 +549,10 @@ namespace CH8P1
                             chest1.isUnlocked = true;
                             playerBag.Remove(itemThree);
                             itemThree.bagContains = false;
-                            mainRichTextBox.Text += "You have unlocked the chest.\n\n";
+                            pointsPerAction = 100;
+                            score.currentScore += pointsPerAction;
+                            score.isActionCompleted = true;
+                            mainRichTextBox.Text += "You have unlocked the chest. You have gained 100 points.\n\n";
                         }
                         else
                         {
@@ -554,6 +576,9 @@ namespace CH8P1
                         itemFour.bagItemDescription = "A very shiny, sharp sword.\n\n";
                         itemFour.bagContains = true;
                         playerBag.Add(itemFour);
+                        pointsPerAction = 50;
+                        score.currentScore += pointsPerAction;
+                        score.isActionCompleted = true;
                         mainRichTextBox.Text += "You have taken the Sword and it is now in your inventory.\n\n";
                     }
                     else
@@ -576,6 +601,9 @@ namespace CH8P1
                         itemFive.bagItemName = obj5.itemName;
                         itemFive.bagItemDescription = obj5.itemDescription;
                         itemFive.bagContains = true;
+                        pointsPerAction = 50;
+                        score.currentScore += pointsPerAction;
+                        score.isActionCompleted = true;
                         playerBag.Add(itemFive);
                         mainRichTextBox.Text += "You have taken the Knife and it is now in your inventory.\n\n";
                     }
@@ -587,11 +615,19 @@ namespace CH8P1
                 if (itemOne.bagContains == false)
                 {
                     mainRichTextBox.Text += "There is no candle to drop from your bag.\n";
+                    if (score.currentScore <= 0)
+                    {
+                        score.currentScore = 0;
+                        mainRichTextBox.Text += "\nYour score cannot go lower than 0.\n";
+                    }
                 }
                 else
                 {
                     playerBag.Remove(itemOne);
                     itemOne.bagContains = false;
+                    pointsPerAction = 50;
+                    score.currentScore -= pointsPerAction;
+                    score.isActionCompleted = true;
                     mainRichTextBox.Text += "You have removed the Candle from your inventory.\n\n";
                 }
             }
@@ -600,11 +636,19 @@ namespace CH8P1
                 if(itemTwo.bagContains == false)
                 {
                     mainRichTextBox.Text += "There is no glass to drop from your bag.\n";
+                    if (score.currentScore <= 0)
+                    {
+                        score.currentScore = 0;
+                        mainRichTextBox.Text += "\nYour score cannot go lower than 0.\n";
+                    }
                 }
                 else
                 {
                     playerBag.Remove(itemTwo);
                     itemTwo.bagContains = false;
+                    pointsPerAction = 50;
+                    score.currentScore -= pointsPerAction;
+                    score.isActionCompleted = true;
                     mainRichTextBox.Text += "You have removed the Glass from your inventory.\n\n";
                 }
             }
@@ -613,11 +657,19 @@ namespace CH8P1
                 if(itemThree.bagContains == false)
                 {
                     mainRichTextBox.Text += "There is no key to drop from your bag.\n";
+                    if (score.currentScore <= 0)
+                    {
+                        score.currentScore = 0;
+                        mainRichTextBox.Text += "\nYour score cannot go lower than 0.\n";
+                    }
                 }
                 else
                 {
                     playerBag.Remove(itemThree);
                     itemThree.bagContains = false;
+                    pointsPerAction = 50;
+                    score.currentScore -= pointsPerAction;
+                    score.isActionCompleted = true;
                     mainRichTextBox.Text += "You have removed the Key from your inventory.\n\n";
                 }
             }
@@ -626,11 +678,19 @@ namespace CH8P1
                 if(itemFour.bagContains == false)
                 {
                     mainRichTextBox.Text += "There is no sword to drop from your bag.\n\n";
+                    if (score.currentScore <= 0)
+                    {
+                        score.currentScore = 0;
+                        mainRichTextBox.Text += "\nYour score cannot go lower than 0.\n";
+                    }
                 }
                 else
                 {
                     playerBag.Remove(itemFour);
                     itemFour.bagContains = false;
+                    pointsPerAction = 50;
+                    score.currentScore -= pointsPerAction;
+                    score.isActionCompleted = true;
                     mainRichTextBox.Text += "You have removed the Sword from your inventory.\n";
                 }
             }
@@ -639,11 +699,19 @@ namespace CH8P1
                 if(itemFive.bagContains == false)
                 {
                     mainRichTextBox.Text += "There is no knife to drop from your bag.\n\n";
+                    if (score.currentScore <= 0)
+                    {
+                        score.currentScore = 0;
+                        mainRichTextBox.Text += "\nYour score cannot go lower than 0.\n";
+                    }
                 }
                 else
                 {
                     playerBag.Remove(itemFive);
                     itemFive.bagContains = false;
+                    pointsPerAction = 50;
+                    score.currentScore -= pointsPerAction;
+                    score.isActionCompleted = true;
                     mainRichTextBox.Text += "You have removed the Knife from your invnetory.\n";
                 }
             }
@@ -846,6 +914,7 @@ namespace CH8P1
                                         "Drop\n" +
                                         "Unlock\n" +
                                         "Open\n" +
+                                        "Score\n" +
                                         "Inventory\n\n";
             }
             this.AcceptButton = submitButton;
