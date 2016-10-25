@@ -21,12 +21,13 @@ namespace CH8P1
             name = "Jaylon";
         }
 
-        public string riddleAnswer {get; set;}
+        public string riddleAnswer { get; set; }
+        public string sayRiddle { get; set; }
 
         /**
          * 
-         */ 
-        public string sayRiddle()
+         */
+        public string sayRid()
         {
             if (rand.Next(3) + 1 == 1)
             {
@@ -50,29 +51,51 @@ namespace CH8P1
 
         public void checkAnswer(string s)
         {
-            if(riddleNum == 1)
+            if (riddleNum == 1)
             {
-                if(s.ToLower().Equals("history"))
+                if (s.ToLower().Equals("history"))
                 {
                     output = "Correct";
                 }
-                else if(!s.ToLower().Equals("history"))
+                else if (!s.ToLower().Equals("history"))
                 {
                     output = "That is not the correct answer";
                 }
             }
+            if (riddleNum == 2)
+            {
+                if (s.ToLower().Equals("frostbite"))
+                {
+                    output = "Correct";
+                }
+                else if (!s.ToLower().Equals("frostbite"))
+                {
+                    output = "That is not the correct answer";
+                }
+            }
+            if (riddleNum == 3)
+            {
+                if (s.ToLower().Equals("name"))
+                {
+                    output = "Correct";
+                }
+                else if (!s.ToLower().Equals("name"))
+                {
+                    output = "That is notthe correct answer";
+                }
+            }
         }
 
-        
-        //override
-        //public String ToString()
-        //{
-        //    String output;
-       
-        //    //return output;
-        //}
-
         //TESTING CHANGES
-       
+
+        override
+        public String ToString()
+        {
+            String sayRiddle;
+
+
+            return output;
+        }
+
     }
 }
