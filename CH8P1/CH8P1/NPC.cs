@@ -12,8 +12,7 @@ namespace CH8P1
         private string riddle;
         private int riddleNum;
         private string output;
-
-        Random rand = new Random();
+        private bool checkIfUsed = false;
 
         public NPC()
         {
@@ -21,29 +20,28 @@ namespace CH8P1
         }
 
         public string riddleAnswer { get; set; }
-
         /**
          * 
          */
-        public string sayRiddle()
+        public string sayRiddle1()
         {
-            if (rand.Next(3) + 1 == 1)
-            {
-                riddle = "You will always find me in the past. I can be created in the present,"
-                        + "But the future can never taint me. What am I?";
-                riddleNum = 1;
-            }
-            else if (rand.Next(3) + 1 == 2)
-            {
-                riddle = "What do you get when you cross a snowman with a vampire?";
-                riddleNum = 2;
-            }
-            else if (rand.Next(3) + 1 == 3)
-            {
-                riddle = "What belongs to you but others use it more than you do?";
-                riddleNum = 3;
-            }
+            riddle = "You will always find me in the past. I can be created in the present,"
+                    + "But the future can never taint me. What am I?";
+            riddleNum = 1;
+            return riddle;
+        }
 
+        public string sayRiddle2()
+        {
+            riddle = "What do you get when you cross a snowman with a vampire?";
+            riddleNum = 2;
+            return riddle;
+        }
+
+        public string sayRiddle3()
+        {
+            riddle = "What belongs to you but others use it more than you do?";
+            riddleNum = 3;
             return riddle;
         }
 
