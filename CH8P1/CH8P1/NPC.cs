@@ -10,7 +10,6 @@ namespace CH8P1
     {
         private string name = "";
         private string riddle;
-        private string riddleAns;
         private int riddleNum;
         private string output;
 
@@ -22,12 +21,11 @@ namespace CH8P1
         }
 
         public string riddleAnswer { get; set; }
-        public string sayRiddle { get; set; }
 
         /**
          * 
          */
-        public string sayRid()
+        public string sayRiddle()
         {
             if (rand.Next(3) + 1 == 1)
             {
@@ -85,17 +83,5 @@ namespace CH8P1
                 }
             }
         }
-
-        //TESTING CHANGES
-
-        override
-        public String ToString()
-        {
-            String sayRiddle;
-
-
-            return output;
-        }
-
     }
 }
