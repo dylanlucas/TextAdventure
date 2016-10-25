@@ -52,6 +52,9 @@ namespace CH8P1
         //Set up the Chest Objects
         Chest chest1 = new Chest();
 
+        //Set up the NPC to give the riddles
+        NPC joker = new NPC();
+
         public Form1()
         {
             InitializeComponent();
@@ -106,7 +109,7 @@ namespace CH8P1
             r4.roomID = 3;
             r4.roomName = "Stairwell\n";
             r4.roomDescription = "You've found a stairwell, you can either go north which would lead you upstairs into an attic maybe?, or you can go south which would lead you downstairs to maybe the first level of the floor?, its hard to tell there is no direction here.\n" +
-                                 "You see that there is three exits around you, to your North, South, and West.\n";
+                                 "You see that there is three exits around you, to your North, South, and West.\n" ;
             r4.northExit = true;
             r4.eastExit = false;
             r4.southExit = true;

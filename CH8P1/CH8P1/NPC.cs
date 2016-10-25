@@ -12,7 +12,6 @@ namespace CH8P1
         private string riddle;
         private int riddleNum;
         private string output;
-        private bool checkIfUsed = false;
 
         public NPC()
         {
