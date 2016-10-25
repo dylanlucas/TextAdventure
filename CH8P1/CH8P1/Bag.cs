@@ -10,7 +10,7 @@ namespace CH8P1
     {
         public String bagItemName { get; set; }
         public String bagItemDescription { get; set; }
-        public bool bagContains { get; set; }
+        public bool bagContains;
       
         override
         public String ToString()
