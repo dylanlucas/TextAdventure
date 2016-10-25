@@ -52,9 +52,6 @@ namespace CH8P1
         //Set up the Chest Objects
         Chest chest1 = new Chest();
 
-        //Set up the NPC to give the riddles
-        NPC joker = new NPC();
-
         public Form1()
         {
             InitializeComponent();
