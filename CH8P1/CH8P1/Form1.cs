@@ -56,6 +56,9 @@ namespace CH8P1
         Score score = new Score();
         int pointsPerAction = 0;       //sets the points per action
 
+        //Set up the NPC class
+        NPC npc = new NPC();
+
         public Form1()
         {
             InitializeComponent();
@@ -86,7 +89,7 @@ namespace CH8P1
             r2.roomID = 1;
             r2.roomName = "Hallway\n";
             r2.roomDescription = "You've left the Bed Room and are now in a hallway. You can see to your left and right a bit and notice that there are many doors, most closed, but one wide open with a flickering light coming from it.\n" +
-                                 "You see that there are four exits around you, one to your North, East, South, and West.\n";
+                                 "You see that there are four exits around you, one to your North, East, South, and West.\nIn the corner there is an eerie voive calling out for you.\n";
             r2.northExit = true;
             r2.eastExit = true;
             r2.southExit = true;
