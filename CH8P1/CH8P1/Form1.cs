@@ -902,7 +902,9 @@ namespace CH8P1
             //Quit Option to close the game
             if (userInputTextBox.Text.ToLower() == "quit")
             {
+                MessageBox.Show(score.ToString());
                 this.Close();
+                return;
             }
 
             if (userInputTextBox.Text.ToLower() == "help")
