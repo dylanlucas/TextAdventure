@@ -21,6 +21,9 @@ namespace CH8P1
         //Initialize the List Objects
         List<Object> objects = new List<Object>();
 
+        //Check the answer
+        string checkAns;
+
         //Initialize Rooms;
         Room r1 = new Room();
         Room r2 = new Room();
@@ -89,7 +92,7 @@ namespace CH8P1
             r2.roomID = 1;
             r2.roomName = "Hallway\n";
             r2.roomDescription = "You've left the Bed Room and are now in a hallway. You can see to your left and right a bit and notice that there are many doors, most closed, but one wide open with a flickering light coming from it.\n" +
-                                 "You see that there are four exits around you, one to your North, East, South, and West.\nIn the corner there is an eerie voive calling out for you.\n";
+                                 "You see that there are four exits around you, one to your North, East, South, and West.\nIn the middle of the walkway there is an eerie voive calling out for you.\n";
             r2.northExit = true;
             r2.eastExit = true;
             r2.southExit = true;
@@ -496,6 +499,33 @@ namespace CH8P1
                     }
                 }
             }
+
+            if(playerOne.currentLocation == r2)
+            {
+                textBoxRiddle.Visible = true;
+                if (userInputTextBox.Text.ToLower() == "talk to man")
+                {  
+                    checkAns = textBoxRiddle.Text; 
+                    MessageBox.Show(npc.sayRiddle1());
+                    npc.sayAns = true;
+                }
+            }
+
+            if(npc.sayAns == true)
+            {
+                if(userInputTextBox.Text == "history")
+                {
+                    mainRichTextBox.Text += "\nThat is the correct answer.\n";
+                }
+                else
+                {
+                    mainRichTextBox.Text += "\nThat answer is incorrect.\n";
+                }
+                //checkAns = userInputTextBox.Text;
+                //npc.checkAnswer(checkAns);
+                //mainRichTextBox.Text += npc.sayOutput.ToString(); 
+            }
+
 
             if (playerOne.currentLocation == r3)
             {

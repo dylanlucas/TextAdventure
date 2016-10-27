@@ -31,6 +31,7 @@
             this.userInputTextBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
             this.mainRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.textBoxRiddle = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // userInputTextBox
@@ -62,11 +63,21 @@
             this.mainRichTextBox.TabIndex = 2;
             this.mainRichTextBox.Text = "";
             // 
+            // textBoxRiddle
+            // 
+            this.textBoxRiddle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRiddle.Location = new System.Drawing.Point(12, 498);
+            this.textBoxRiddle.Name = "textBoxRiddle";
+            this.textBoxRiddle.Size = new System.Drawing.Size(487, 29);
+            this.textBoxRiddle.TabIndex = 3;
+            this.textBoxRiddle.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 501);
+            this.ClientSize = new System.Drawing.Size(619, 559);
+            this.Controls.Add(this.textBoxRiddle);
             this.Controls.Add(this.mainRichTextBox);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.userInputTextBox);
@@ -82,6 +93,7 @@
         private System.Windows.Forms.TextBox userInputTextBox;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.RichTextBox mainRichTextBox;
+        private System.Windows.Forms.TextBox textBoxRiddle;
     }
 }
 
