@@ -97,7 +97,8 @@ namespace CH8P1
             r2.roomID = 1;
             r2.roomName = "Hallway\n";
             r2.roomDescription = "You've left the Bed Room and are now in a hallway. You can see to your left and right a bit and notice that there are many doors, most closed, but one wide open with a flickering light coming from it.\n" +
-                                 "You see that there are four exits around you, one to your North, East, South, and West.\nIn the middle of the walkway there is an eerie voive calling out for you.\n";
+                                 "You see that there are four exits around you, one to your North, East, South, and West.\n" +
+                                 "In the middle of the walkway there is an eerie voive calling out for you.\n";
             r2.northExit = true;
             r2.eastExit = true;
             r2.southExit = true;
@@ -168,7 +169,8 @@ namespace CH8P1
             r8.roomID = 7;
             r8.roomName = "First Floor Lobby\n";
             r8.roomDescription = "You entered the first floor Lobby area, you see a door infront of you and to both sides of the room. It resembles the Hallway you entered when you left the first room.\n" +
-                                 "You see that there is four exits around you, to the North, to the East, to the South, and to the West.\n";
+                                 "You see that there is four exits around you, to the North, to the East, to the South, and to the West.\n" +
+                                 "In the middle of the walkway there is an eerie voive calling out for you.\n";
             r8.northExit = true;
             r8.eastExit = true;
             r8.southExit = true;
@@ -177,7 +179,8 @@ namespace CH8P1
             r9.roomID = 8;
             r9.roomName = "The Kitchen\n";
             r9.roomDescription = "You smell something wonderful cooking in this room but aren't sure of what it is. It is clear now that you are in the Kitchen.\n" +
-                                 "You see that there is one exit around you, to the South.\n";
+                                 "You see that there is one exit around you, to the South.\n" +
+                                 "In the middle of the walkway there is an eerie voive calling out for you.\n"; ;
             r9.northExit = false;
             r9.eastExit = false;
             r9.southExit = true;
@@ -532,6 +535,7 @@ namespace CH8P1
                 {
                     mainRichTextBox.Text += "\nThat is an incorrect answer.\n";
                     textBoxRiddle.Text = "";
+                    sayAns1 = false;
                 }
             }
             
@@ -634,6 +638,7 @@ namespace CH8P1
                 {
                     mainRichTextBox.Text += "\nThat is an incorrect answer.\n";
                     textBoxRiddle.Text = "";
+                    sayAns3 = false;
                 }
             }
 
@@ -664,6 +669,7 @@ namespace CH8P1
                 {
                     mainRichTextBox.Text += "\nThat is an incorrect answer.\n";
                     textBoxRiddle.Text = "";
+                    sayAns3 = false;
                 }
             }
 
