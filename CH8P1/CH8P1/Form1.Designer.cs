@@ -32,6 +32,7 @@
             this.submitButton = new System.Windows.Forms.Button();
             this.mainRichTextBox = new System.Windows.Forms.RichTextBox();
             this.textBoxRiddle = new System.Windows.Forms.TextBox();
+            this.riddleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // userInputTextBox
@@ -66,17 +67,29 @@
             // textBoxRiddle
             // 
             this.textBoxRiddle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRiddle.Location = new System.Drawing.Point(12, 498);
+            this.textBoxRiddle.Location = new System.Drawing.Point(186, 495);
             this.textBoxRiddle.Name = "textBoxRiddle";
-            this.textBoxRiddle.Size = new System.Drawing.Size(487, 29);
+            this.textBoxRiddle.Size = new System.Drawing.Size(412, 29);
             this.textBoxRiddle.TabIndex = 3;
             this.textBoxRiddle.Visible = false;
+            // 
+            // riddleLabel
+            // 
+            this.riddleLabel.AutoSize = true;
+            this.riddleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.riddleLabel.Location = new System.Drawing.Point(9, 495);
+            this.riddleLabel.Name = "riddleLabel";
+            this.riddleLabel.Size = new System.Drawing.Size(148, 16);
+            this.riddleLabel.TabIndex = 4;
+            this.riddleLabel.Text = "Enter Riddle Answer";
+            this.riddleLabel.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 559);
+            this.Controls.Add(this.riddleLabel);
             this.Controls.Add(this.textBoxRiddle);
             this.Controls.Add(this.mainRichTextBox);
             this.Controls.Add(this.submitButton);
@@ -94,6 +107,7 @@
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.RichTextBox mainRichTextBox;
         private System.Windows.Forms.TextBox textBoxRiddle;
+        private System.Windows.Forms.Label riddleLabel;
     }
 }
 

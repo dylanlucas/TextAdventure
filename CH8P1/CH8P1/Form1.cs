@@ -500,30 +500,38 @@ namespace CH8P1
                 }
             }
 
-            if(playerOne.currentLocation == r2)
+            if (playerOne.currentLocation == r2)
             {
                 textBoxRiddle.Visible = true;
+                riddleLabel.Visible = true;
                 if (userInputTextBox.Text.ToLower() == "talk to man")
-                {  
-                    checkAns = textBoxRiddle.Text; 
-                    MessageBox.Show(npc.sayRiddle1());
+                {
+                    mainRichTextBox.Text += npc.sayRiddle1();
                     npc.sayAns = true;
                 }
             }
-
-            if(npc.sayAns == true)
+            else
             {
-                if(userInputTextBox.Text == "history")
+                textBoxRiddle.Visible = false;
+                riddleLabel.Visible = false;
+            }
+            if (npc.sayAns == true)
+            {
+                if (textBoxRiddle.Text == "")
+                {
+                    mainRichTextBox.Text += "\nPlease enter an answer.\n";
+                }
+                else if (textBoxRiddle.Text == "history")
                 {
                     mainRichTextBox.Text += "\nThat is the correct answer.\n";
+                    pointsPerAction = 25;
+                    score.currentScore += pointsPerAction;
+                    score.isActionCompleted = true;
                 }
                 else
                 {
-                    mainRichTextBox.Text += "\nThat answer is incorrect.\n";
+                    mainRichTextBox.Text += "\nThat is an incorrect answer.\n";
                 }
-                //checkAns = userInputTextBox.Text;
-                //npc.checkAnswer(checkAns);
-                //mainRichTextBox.Text += npc.sayOutput.ToString(); 
             }
 
 
