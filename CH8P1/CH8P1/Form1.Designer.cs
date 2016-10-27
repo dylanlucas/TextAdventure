@@ -57,6 +57,8 @@
             // 
             // mainRichTextBox
             // 
+            this.mainRichTextBox.BackColor = System.Drawing.SystemColors.Info;
+            this.mainRichTextBox.Enabled = false;
             this.mainRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainRichTextBox.Location = new System.Drawing.Point(12, 12);
             this.mainRichTextBox.Name = "mainRichTextBox";
@@ -70,7 +72,7 @@
             this.textBoxRiddle.Location = new System.Drawing.Point(186, 495);
             this.textBoxRiddle.Name = "textBoxRiddle";
             this.textBoxRiddle.Size = new System.Drawing.Size(412, 29);
-            this.textBoxRiddle.TabIndex = 3;
+            this.textBoxRiddle.TabIndex = 2;
             this.textBoxRiddle.Visible = false;
             // 
             // riddleLabel

@@ -62,6 +62,11 @@ namespace CH8P1
         //Set up the NPC class
         NPC npc = new NPC();
 
+        //Set up answers
+        bool sayAns1;
+        bool sayAns2;
+        bool sayAns3;
+
         public Form1()
         {
             InitializeComponent();
@@ -507,19 +512,12 @@ namespace CH8P1
                 if (userInputTextBox.Text.ToLower() == "talk to man")
                 {
                     mainRichTextBox.Text += npc.sayRiddle1();
-                    npc.sayAns = true;
                 }
-            }
-            else
-            {
-                textBoxRiddle.Visible = false;
-                riddleLabel.Visible = false;
-            }
-            if (npc.sayAns == true)
-            {
+
                 if (textBoxRiddle.Text == "")
                 {
                     mainRichTextBox.Text += "\nPlease enter an answer.\n";
+                    textBoxRiddle.Text = "";
                 }
                 else if (textBoxRiddle.Text == "history")
                 {
@@ -527,14 +525,16 @@ namespace CH8P1
                     pointsPerAction = 25;
                     score.currentScore += pointsPerAction;
                     score.isActionCompleted = true;
+                    sayAns1 = true;
+                    textBoxRiddle.Text = "";
                 }
                 else
                 {
                     mainRichTextBox.Text += "\nThat is an incorrect answer.\n";
+                    textBoxRiddle.Text = "";
                 }
             }
-
-
+            
             if (playerOne.currentLocation == r3)
             {
                 if (userInputTextBox.Text.ToLower() == "take glass")
@@ -607,6 +607,66 @@ namespace CH8P1
                 }
             }
 
+            if (playerOne.currentLocation == r7)
+            {
+                textBoxRiddle.Visible = true;
+                riddleLabel.Visible = true;
+                if (userInputTextBox.Text.ToLower() == "talk to man")
+                {
+                    mainRichTextBox.Text += npc.sayRiddle2();
+                }
+
+                if (textBoxRiddle.Text == "")
+                {
+                    mainRichTextBox.Text += "\nPlease enter an answer.\n";
+                    textBoxRiddle.Text = "";
+                }
+                else if (textBoxRiddle.Text == "frostbite")
+                {
+                    mainRichTextBox.Text += "\nThat is the correct answer.\n";
+                    pointsPerAction = 25;
+                    score.currentScore += pointsPerAction;
+                    score.isActionCompleted = true;
+                    sayAns2 = true;
+                    textBoxRiddle.Text = "";
+                }
+                else
+                {
+                    mainRichTextBox.Text += "\nThat is an incorrect answer.\n";
+                    textBoxRiddle.Text = "";
+                }
+            }
+
+            if (playerOne.currentLocation == r8)
+            {
+                textBoxRiddle.Visible = true;
+                riddleLabel.Visible = true;
+                if (userInputTextBox.Text.ToLower() == "talk to man")
+                {
+                    mainRichTextBox.Text += npc.sayRiddle1();
+                }
+
+                if (textBoxRiddle.Text == "")
+                {
+                    mainRichTextBox.Text += "\nPlease enter an answer.\n";
+                    textBoxRiddle.Text = "";
+                }
+                else if (textBoxRiddle.Text == "name")
+                {
+                    mainRichTextBox.Text += "\nThat is the correct answer.\n";
+                    pointsPerAction = 25;
+                    score.currentScore += pointsPerAction;
+                    score.isActionCompleted = true;
+                    sayAns3 = true;
+                    textBoxRiddle.Text = "";
+                }
+                else
+                {
+                    mainRichTextBox.Text += "\nThat is an incorrect answer.\n";
+                    textBoxRiddle.Text = "";
+                }
+            }
+
             if (userInputTextBox.Text.ToLower() == "open chest")
             {
                 if (chest1.isUnlocked == true)
@@ -648,6 +708,18 @@ namespace CH8P1
                         playerBag.Add(itemFive);
                         mainRichTextBox.Text += "You have taken the Knife and it is now in your inventory.\n\n";
                     }
+                }
+            }
+
+            if (playerOne.currentLocation == r11)
+            {
+                if(sayAns1 == true && sayAns2 == true && sayAns3 == true)
+                {
+                    mainRichTextBox.Text = "\nCongratulations you have won the game.";
+                }
+                else
+                {
+                    mainRichTextBox.Text += "\nYou still have some work to do....\n";
                 }
             }
 
@@ -958,6 +1030,7 @@ namespace CH8P1
                                         "Unlock\n" +
                                         "Open\n" +
                                         "Score\n" +
+                                        "Talk to man\n" +
                                         "Inventory\n\n";
             }
             this.AcceptButton = submitButton;
